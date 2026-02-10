@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+    <meta name="referrer" content="no-referrer-when-downgrade">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="preloader">
+        <div class="loader-inner">
+            <div class ="ring"></div>
+             <p class="loading-text">Loading</p>
+        </div>
+    </div>
+
+
+    <div class="container">
+    <div class="nav">
+        <div class="nav-left">
+        <img src="./images/runner.jpeg" alt="Runner Logo" class="nav-logo">
+         <h2>&#x24RUNNER</h2>
+    </div>
+    
+    <ul class="nav-links">
+        <li><a href="#about">About Us</a></li>
+        <li><a href="#steps">How To Buy</a></li>
+        <li><a href="https://x.com/i/communities/2021149037873803274">X Community</a></li>
+    </ul>
+
+    <h2><a href="https://pump.fun/coin/AHSpic8vG22rZnrAKNyADMBTQLH964QnBS3dUAdkpump">BUY NOW</a></h2>
+    </div>
+
+        <section class="gif-section">
+    <div class="main">
+        <div class="content">
+            <h3>THE RUNNER</h3>
+            <p>A Solana memecoin inspired by a viral clip of a wolf-like dog sprinting from security guards. The dramatic edits made the chase blow up on X, and the token launched soon after.
+            </p>
+        </div>
+
+        <section class="tokenomics">
+            <h2>Live Token Stats</h2>
+
+            <div class="stats">
+                <div class="token-card">
+                    <h3>Price</h3>
+                    <p id="price">Loading...</p>
+                </div>
+
+                <div class="token-card">
+                    <h3>Liquidity</h3>
+                    <p id="liquidity">Loading...</p>
+                </div>
+
+                <div class="token-card">
+                    <h3>Market Cap</h3>
+                    <p id="mc">Loading...</p>
+                </div>
+
+                <div class="token-card">
+                    <h3>24h Volume</h3>
+                    <p id="vol">Loading...</p>
+                </div>
+            </div>
+        </section>
+    </div>
+    </section>
+    
+    <div class="chart-container">
+        <h3>Loading Live Market Data...</h3>
+        <iframe src="https://dexscreener.com/solana/7ytzYSBJKpZxesdBJbcgf5aZauX9ArnjPoBtfjt74e2A?embed=1&theme=dark"
+                width="100%"
+                height="600"
+                style="border:0;">
+        </iframe>
+    </div>
+
+    <div class="narrative">
+        <div class="narrative-content">
+            <section id="about">
+            <h2>THE RUNNER NARRATIVE</h2>
+            </section>
+            <p>The Runner memecoin is based on a viral video of a wolf-like dog sprinting away from security guards. The clip was edited with dramatic, Olympic-style camera cuts that made the chase look like a serious race, and it spread quickly on X. Because of how fast the video trended, the Solana token inspired by it was created within hours.</p>
+        </div>
+    
+        <div class="slider">
+            <div class="slides">
+                <img src="./images/runner2.jpeg">
+            </div>
+        </div>
+    </div>    
+
+    <div class="purcase">
+        <div class="purchase-content">
+            <section id="steps">
+            <h2>HOW TO BUY RUNNER</h2>
+            </section>
+        </div>
+        
+        <div class="buy-steps">
+            <div class="steps">
+                <img src="./images/wallet.png" alt="Wallet Icon" class="nav-logo">
+                <h3>1. CREATE WALLET</h3>
+                <p>Download Phantom or Solflare and create your wallet.</p>
+            </div>
+
+            <div class="steps">
+                <img src="./images/solana-sol-logo.svg" alt="SOL Icon" class="nav-logo">
+                <h3>2. GET SOME SOL</h3>
+                <p>Purchase SOL on an exchange and transfer it to your wallet.</p>
+            </div>
+
+            <div class="steps">
+                <img src="./images/raydium-ray-logo.svg" alt="Swap Icon" class="nav-logo">
+                <h3>3. Connect & Swap</h3>
+                <p>Use the swap feature in your wallet to buy RUNNER using the pair address.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="social-container">
+        <ul>
+            <li><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></li>
+            <li><img src="https://dexscreener.com/favicon.png" alt="DexScreener"></li>
+            <li><img src="https://pump.fun/logo.png" alt="Pumpfun"></li>
+        </ul>
+    </div>
+
+    <div class="ca-container" onclick="copyCA()">
+        <div class="address">
+            <span id="ca-text">AHSpic8vG22rZnrAKNyADMBTQLH964QnBS3dUAdkpump</span>
+            <button class="copy-btn">COPY &#128203;</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>Copyright &#169; 2026 RUNNER. All rights reserved.</p>    
+    </div>
+    </div>
+    <script src="script.js"></script>
+
+    <script>
+        window.addEventListener("load", function () {
+            const loader = document.getElementById("preloader");
+            loader.style.opacity = "0";
+            loader.style.transition = "0.5s";
+
+            setTimeout( () => {
+                loader.style.display = "none";
+            }, 500);
+        });
+    </script>
+</body>
+</html>
