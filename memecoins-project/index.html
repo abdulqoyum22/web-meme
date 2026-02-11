@@ -3,143 +3,306 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
+    <title>The Runner - Solana Memecoin</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <meta name="referrer" content="no-referrer-when-downgrade">
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        
+        body {
+            background-color: #0b0b0b;
+        }
+        
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            z-index: -1;
+            filter: blur(120px);
+            background: radial-gradient(circle at 20% 30%, #1A3D63, transparent 40%), 
+                        radial-gradient(circle at 80% 70%, #4A7FA7, transparent 40%);
+            animation: bgMove 18s ease infinite alternate;
+        }
+        
+        @keyframes bgMove {
+            0% {
+                transform: scale(1) translate(0,0);
+            }
+            100% {
+                transform: scale(1.2) translate(-40px, -40px);
+            }
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        @keyframes pulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        @keyframes floatGlow {
+            0% { transform: translate(0, 0); }
+            50% { transform: translate(80px, 60px); }
+            100% { transform: translate(0, 0); }
+        }
+        
+        .ring {
+            width: 70px;
+            height: 70px;
+            border: 3px solid rgba(255, 255, 255, 0.15);
+            border-top: 3px solid #00f2ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            box-shadow: 0 0 20px #00f0ff66;
+        }
+        
+        .loader-text {
+            letter-spacing: 4px;
+            animation: pulse 1.2s infinite;
+        }
+        
+        .glow-float::before {
+            content: "";
+            position: absolute;
+            top: -120px;
+            left: -120px;
+            width: 100%;
+            max-width: 420px;
+            background: radial-gradient(circle, rgba(231,203,169,0.1), rgba(231,203,169,0.3), transparent 60%);
+            animation: floatGlow 8s linear infinite;
+        }
+        
+        .nav-underline {
+            position: relative;
+        }
+        
+        .nav-underline::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -6px;
+            width: 0%;
+            height: 2px;
+            background-color: #00f2ff;
+            transition: 0.25s;
+        }
+        
+        .nav-underline:hover::after {
+            width: 100%;
+        }
+        
+        .glass-card {
+            background-color: rgba(231, 203, 169, 0.04);
+            border: 1px solid rgba(231,203,169,0.15);
+            box-shadow: 0 10px 30px rgba(231,203,169,0.25);
+            transition: all 0.3s ease;
+        }
+        
+        .glass-card:hover {
+            box-shadow: 0 10px 25px rgba(10,25,49,0.35);
+            transform: translateY(-5px);
+        }
+        
+        .hero-bg {
+            position: relative;
+            background: linear-gradient(135deg, rgba(11, 11, 11, 0.85) 0%, rgba(26, 61, 99, 0.75) 100%), url('./images/therunner.gif');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+        
+        .hero-bg::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at center, rgba(0, 242, 255, 0.1) 0%, rgba(0, 0, 0, 0.4) 100%);
+            z-index: 1;
+        }
+        
+        .hero-bg > * {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
 </head>
-<body>
-    <div id="preloader">
-        <div class="loader-inner">
-            <div class ="ring"></div>
-             <p class="loading-text">Loading</p>
+<body class="bg-gray-950 text-white">
+    <!-- Preloader -->
+    <div id="preloader" class="fixed inset-0 bg-gray-950 flex justify-center items-center z-50">
+        <div class="loader-inner text-center">
+            <div class="ring mx-auto mb-5"></div>
+            <p class="loader-text tracking-widest">LOADING</p>
         </div>
     </div>
 
+    <!-- Main Container -->
+    <div class="w-full max-w-6xl mx-auto px-4 sm:px-6">
+        
+        <!-- Navigation -->
+        <nav class="sticky top-0 z-40 flex flex-col sm:flex-row items-center justify-between py-4 px-4 sm:px-6 bg-gray-950/80 backdrop-blur-md border-b border-gray-800 shadow-lg gap-4 sm:gap-0 mb-6 sm:mb-0">
+            <div class="flex items-center gap-3 sm:gap-4">
+                <img src="./images/runner.jpeg" alt="Runner Logo" class="w-12 h-12 sm:w-14 sm:h-14 rounded-full object-cover">
+                <h2 class="text-lg sm:text-2xl font-bold">🏃 RUNNER</h2>
+            </div>
+            
+            <ul class="flex gap-4 sm:gap-6 text-sm sm:text-base">
+                <li><a href="#about" class="nav-underline text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-300">About Us</a></li>
+                <li><a href="#steps" class="nav-underline text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-300">How To Buy</a></li>
+                <li><a href="https://x.com/i/communities/2021149037873803274" class="nav-underline text-gray-300 hover:text-cyan-400 font-medium transition-colors duration-300">X Community</a></li>
+            </ul>
+        </nav>
 
-    <div class="container">
-    <div class="nav">
-        <div class="nav-left">
-        <img src="./images/runner.jpeg" alt="Runner Logo" class="nav-logo">
-         <h2>&#x24RUNNER</h2>
-    </div>
-    
-    <ul class="nav-links">
-        <li><a href="#about">About Us</a></li>
-        <li><a href="#steps">How To Buy</a></li>
-        <li><a href="https://x.com/i/communities/2021149037873803274">X Community</a></li>
-    </ul>
-
-    <h2><a href="https://pump.fun/coin/AHSpic8vG22rZnrAKNyADMBTQLH964QnBS3dUAdkpump">BUY NOW</a></h2>
-    </div>
-
-        <section class="gif-section">
-    <div class="main">
-        <div class="content">
-            <h3>THE RUNNER</h3>
-            <p>A Solana memecoin inspired by a viral clip of a wolf-like dog sprinting from security guards. The dramatic edits made the chase blow up on X, and the token launched soon after.
-            </p>
-        </div>
-
-        <section class="tokenomics">
-            <h2>Live Token Stats</h2>
-
-            <div class="stats">
-                <div class="token-card">
-                    <h3>Price</h3>
-                    <p id="price">Loading...</p>
+        <!-- Hero Section -->
+        <section class="hero-bg py-8 sm:py-16 px-4 sm:px-6">
+            <div class="flex flex-col lg:flex-row items-center gap-6 sm:gap-8 lg:gap-12">
+                <div class="flex-1 text-center lg:text-left order-2 lg:order-1">
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 text-cyan-400 drop-shadow-lg">THE RUNNER</h1>
+                    <p class="text-base sm:text-lg text-gray-300 mb-6 leading-relaxed">
+                        Inspired by a viral clip of a wolf-like dog sprinting from security guards, The Runner is a Solana memecoin that launched soon after the video blew up on X.
+                    </p>
+                    <a href="https://pump.fun/coin/AHSpic8vG22rZnrAKNyADMBTQLH964QnBS3dUAdkpump" class="inline-block bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold py-3 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-cyan-500/50">
+                        BUY NOW
+                    </a>
                 </div>
-
-                <div class="token-card">
-                    <h3>Liquidity</h3>
-                    <p id="liquidity">Loading...</p>
-                </div>
-
-                <div class="token-card">
-                    <h3>Market Cap</h3>
-                    <p id="mc">Loading...</p>
-                </div>
-
-                <div class="token-card">
-                    <h3>24h Volume</h3>
-                    <p id="vol">Loading...</p>
+                <div class="flex-1 order-1 lg:order-2">
+                    <img src="./images/runner2.jpeg" alt="Runner Hero Image" class="w-full max-w-md mx-auto rounded-lg shadow-2xl hover:shadow-cyan-500/50 transition-shadow duration-300">
                 </div>
             </div>
         </section>
-    </div>
-    </section>
-    
-    <div class="chart-container">
-        <h3>Loading Live Market Data...</h3>
-        <iframe src="https://dexscreener.com/solana/7ytzYSBJKpZxesdBJbcgf5aZauX9ArnjPoBtfjt74e2A?embed=1&theme=dark"
-                width="100%"
-                height="600"
-                style="border:0;">
-        </iframe>
-    </div>
 
-    <div class="narrative">
-        <div class="narrative-content">
-            <section id="about">
-            <h2>THE RUNNER NARRATIVE</h2>
-            </section>
-            <p>The Runner memecoin is based on a viral video of a wolf-like dog sprinting away from security guards. The clip was edited with dramatic, Olympic-style camera cuts that made the chase look like a serious race, and it spread quickly on X. Because of how fast the video trended, the Solana token inspired by it was created within hours.</p>
-        </div>
-    
-        <div class="slider">
-            <div class="slides">
-                <img src="./images/runner2.jpeg">
+        <!-- GIF Section with Stats -->
+        <section class="relative py-12 sm:py-20 px-4 sm:px-8 mb-8 rounded-2xl overflow-hidden glass-card">
+            <!-- Decorative glow -->
+            <div class="absolute inset-0 bg-gradient-to-br from-cyan-900/20 to-transparent rounded-2xl"></div>
+            
+            <div class="relative z-10 flex flex-col gap-8 sm:gap-12">
+                <!-- Content -->
+                <div class="glass-card p-6 sm:p-8 rounded-lg">
+                    <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-cyan-400">THE RUNNER</h3>
+                    <p class="text-gray-200 leading-relaxed">
+                        A Solana memecoin inspired by a viral clip of a wolf-like dog sprinting from security guards. The dramatic edits made the chase blow up on X, and the token launched soon after.
+                    </p>
+                </div>
+
+                <!-- Token Stats -->
+                <div class="">
+                    <h2 class="text-2xl sm:text-3xl font-bold mb-6 text-center">Live Token Stats</h2>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                        <div class="glass-card p-6 rounded-lg text-center">
+                            <h3 class="text-sm font-semibold text-gray-400 mb-2">PRICE</h3>
+                            <p id="price" class="text-2xl sm:text-3xl font-bold text-cyan-400">Loading...</p>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-lg text-center">
+                            <h3 class="text-sm font-semibold text-gray-400 mb-2">LIQUIDITY</h3>
+                            <p id="liquidity" class="text-2xl sm:text-3xl font-bold text-cyan-400">Loading...</p>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-lg text-center">
+                            <h3 class="text-sm font-semibold text-gray-400 mb-2">MARKET CAP</h3>
+                            <p id="mc" class="text-2xl sm:text-3xl font-bold text-cyan-400">Loading...</p>
+                        </div>
+
+                        <div class="glass-card p-6 rounded-lg text-center">
+                            <h3 class="text-sm font-semibold text-gray-400 mb-2">24H VOLUME</h3>
+                            <p id="vol" class="text-2xl sm:text-3xl font-bold text-cyan-400">Loading...</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Chart Section -->
+        <div class="glass-card p-6 sm:p-8 rounded-lg mb-8">
+            <h3 class="text-2xl sm:text-3xl font-bold mb-4 text-cyan-400">Live Market Data</h3>
+            <div class="w-full overflow-x-auto rounded-lg">
+                <iframe src="https://dexscreener.com/solana/7ytzYSBJKpZxesdBJbcgf5aZauX9ArnjPoBtfjt74e2A?embed=1&theme=dark"
+                        width="100%"
+                        height="600"
+                        class="border-0 rounded-lg min-w-full"
+                        style="min-height: 600px;">
+                </iframe>
             </div>
         </div>
-    </div>    
 
-    <div class="purcase">
-        <div class="purchase-content">
-            <section id="steps">
-            <h2>HOW TO BUY RUNNER</h2>
-            </section>
-        </div>
-        
-        <div class="buy-steps">
-            <div class="steps">
-                <img src="./images/wallet.png" alt="Wallet Icon" class="nav-logo">
-                <h3>1. CREATE WALLET</h3>
-                <p>Download Phantom or Solflare and create your wallet.</p>
+        <!-- Narrative Section -->
+        <section class="py-12 sm:py-20 mb-8">
+            <div class="flex flex-col lg:flex-row gap-6 sm:gap-8 lg:gap-12">
+                <div class="flex-1 glass-card p-6 sm:p-8 rounded-lg">
+                    <h2 id="about" class="text-3xl sm:text-4xl font-bold mb-6 text-cyan-400">THE RUNNER NARRATIVE</h2>
+                    <p class="text-gray-200 leading-relaxed text-base sm:text-lg">
+                        The Runner memecoin is based on a viral video of a wolf-like dog sprinting away from security guards. The clip was edited with dramatic, Olympic-style camera cuts that made the chase look like a serious race, and it spread quickly on X. Because of how fast the video trended, the Solana token inspired by it was created within hours.
+                    </p>
+                </div>
+            
+                <div class="flex-1">
+                    <img src="./images/runner2.jpeg" alt="Runner narrative" class="w-full rounded-lg shadow-2xl hover:shadow-cyan-500/50 transition-shadow duration-300 object-cover h-full">
+                </div>
             </div>
+        </section>
 
-            <div class="steps">
-                <img src="./images/solana-sol-logo.svg" alt="SOL Icon" class="nav-logo">
-                <h3>2. GET SOME SOL</h3>
-                <p>Purchase SOL on an exchange and transfer it to your wallet.</p>
+        <!-- How to Buy Section -->
+        <section class="relative py-12 sm:py-20 px-6 sm:px-12 mb-8 rounded-3xl overflow-hidden glow-float" style="background-color: rgba(231,203,169,0.04); border: 1px solid rgba(231,203,169,0.15); box-shadow: 0 10px 30px rgba(231,203,169,0.25);">
+            <div class="relative z-10">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 id="steps" class="text-3xl sm:text-4xl lg:text-5xl font-bold text-white">HOW TO BUY RUNNER</h2>
+                </div>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8">
+                    <div class="bg-gray-900 p-6 sm:p-8 rounded-xl text-center hover:shadow-2xl transition-all duration-300 hover:transform hover:-translate-y-2 border border-gray-700">
+                        <img src="./images/wallet.png" alt="Wallet Icon" class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full">
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-cyan-400">1. CREATE WALLET</h3>
+                        <p class="text-gray-300 text-sm sm:text-base">Download Phantom or Solflare and create your wallet.</p>
+                    </div>
+
+                    <div class="bg-gray-900 p-6 sm:p-8 rounded-xl text-center hover:shadow-2xl transition-all duration-300 hover:transform hover:-translate-y-2 border border-gray-700">
+                        <img src="./images/solana-sol-logo.svg" alt="SOL Icon" class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full">
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-cyan-400">2. GET SOME SOL</h3>
+                        <p class="text-gray-300 text-sm sm:text-base">Purchase SOL on an exchange and transfer it to your wallet.</p>
+                    </div>
+
+                    <div class="bg-gray-900 p-6 sm:p-8 rounded-xl text-center hover:shadow-2xl transition-all duration-300 hover:transform hover:-translate-y-2 border border-gray-700">
+                        <img src="./images/raydium-ray-logo.svg" alt="Swap Icon" class="w-16 h-16 sm:w-20 sm:h-20 mx-auto mb-4 rounded-full">
+                        <h3 class="text-lg sm:text-xl font-bold mb-2 text-cyan-400">3. CONNECT & SWAP</h3>
+                        <p class="text-gray-300 text-sm sm:text-base">Use the swap feature in your wallet to buy RUNNER using the pair address.</p>
+                    </div>
+                </div>
             </div>
+        </section>
 
-            <div class="steps">
-                <img src="./images/raydium-ray-logo.svg" alt="Swap Icon" class="nav-logo">
-                <h3>3. Connect & Swap</h3>
-                <p>Use the swap feature in your wallet to buy RUNNER using the pair address.</p>
+        <!-- Social Links -->
+        <div class="flex justify-center gap-6 py-8 mb-8">
+            <a href="#" class="bg-gray-800 hover:bg-cyan-500 p-3 rounded-full transition-all duration-300 transform hover:scale-110">
+                <img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter" class="w-7 h-7">
+            </a>
+            <a href="#" class="bg-gray-800 hover:bg-cyan-500 p-3 rounded-full transition-all duration-300 transform hover:scale-110">
+                <img src="https://dexscreener.com/favicon.png" alt="DexScreener" class="w-7 h-7">
+            </a>
+            <a href="#" class="bg-gray-800 hover:bg-cyan-500 p-3 rounded-full transition-all duration-300 transform hover:scale-110">
+                <img src="https://pump.fun/logo.png" alt="Pump.fun" class="w-7 h-7">
+            </a>
+        </div>
+
+        <!-- Contract Address -->
+        <div onclick="copyCA()" class="bg-gray-900 border-2 border-cyan-400 rounded-lg p-4 mb-8 cursor-pointer hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-300 max-w-2xl mx-auto">
+            <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+                <span id="ca-text" class="font-mono text-sm sm:text-base text-cyan-400 break-all">AHSpic8vG22rZnrAKNyADMBTQLH964QnBS3dUAdkpump</span>
+                <button class="copy-btn bg-cyan-400 hover:bg-cyan-500 text-black font-bold py-2 px-4 rounded transition-colors duration-300 whitespace-nowrap">
+                    COPY 📋
+                </button>
             </div>
         </div>
+
+        <!-- Footer -->
+        <footer class="text-center py-6 px-4 bg-gray-950 border-t border-gray-800 text-gray-500 mt-12">
+            <p>Copyright © 2026 RUNNER. All rights reserved.</p>    
+        </footer>
     </div>
 
-    <div class="social-container">
-        <ul>
-            <li><img src="https://cdn-icons-png.flaticon.com/512/733/733579.png" alt="Twitter"></li>
-            <li><img src="https://dexscreener.com/favicon.png" alt="DexScreener"></li>
-            <li><img src="https://pump.fun/logo.png" alt="Pumpfun"></li>
-        </ul>
-    </div>
-
-    <div class="ca-container" onclick="copyCA()">
-        <div class="address">
-            <span id="ca-text">AHSpic8vG22rZnrAKNyADMBTQLH964QnBS3dUAdkpump</span>
-            <button class="copy-btn">COPY &#128203;</button>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p>Copyright &#169; 2026 RUNNER. All rights reserved.</p>    
-    </div>
-    </div>
     <script src="script.js"></script>
 
     <script>
